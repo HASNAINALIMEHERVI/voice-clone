@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Color Palette */
+  --bg-color: #111317;
+  --surface-low: #1a1c20;
+  --surface-mid: #1e2024;
+  --surface-high: #333539;
+  
+  --primary: #ddb7ff;
+  --primary-container: #b76dff;
+  --secondary: #5de6ff;
+  --secondary-container: #00cbe6;
+  
+  --on-surface: #e2e2e8;
+  --on-surface-variant: #cfc2d6;
+  
+  /* Gradients */
+  --grad-primary: linear-gradient(135deg, var(--primary) 0%, var(--primary-container) 100%);
+  --grad-secondary: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-container) 100%);
+  --grad-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 100%);
+
+  /* Typography */
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  /* Spacing & Blur */
+  --glass-blur: 20px;
+  --border-radius: 16px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--on-surface);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+/* Glassmorphism Utilities */
+.glass {
+  background: var(--grad-glass);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--border-radius);
+}
+
+.glass-card {
+  padding: 24px;
+  background: rgba(30, 32, 36, 0.4);
+  backdrop-filter: blur(var(--glass-blur));
+  border-radius: var(--border-radius);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+}
+
+.glass-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(221, 183, 255, 0.1);
+  border-color: rgba(221, 183, 255, 0.2);
+}
+
+/* Buttons */
+.btn-primary {
+  background: var(--grad-primary);
+  color: #2c0051;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 100px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-primary:hover {
+  filter: brightness(1.1);
+  box-shadow: 0 0 20px rgba(221, 183, 255, 0.4);
+  transform: scale(1.02);
+}
+
+/* Background Blobs for Atmosphere */
+.bg-blob {
+  position: fixed;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  filter: blur(120px);
+  z-index: -1;
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+.blob-purple {
+  background: var(--primary);
+  top: -100px;
+  left: -100px;
+}
+
+.blob-cyan {
+  background: var(--secondary);
+  bottom: -100px;
+  right: -100px;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--surface-high);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-container);
+}

@@ -1,0 +1,14 @@
+# Python
+backend/__pycache__/
+backend/venv/
+backend/.env
+backend/static/aura_*.mp3
+backend/static/sample_*.wav
+
+# Node
+frontend/node_modules/
+frontend/dist/
+.DS_Store
+
+# Persistence
+backend/data/voices.json

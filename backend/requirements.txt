@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+python-multipart
+elevenlabs
+edge-tts
+pydantic
+python-dotenv
+gunicorn
