@@ -66,7 +66,8 @@ function App() {
       })
       const data = await resp.json()
       if (data.status === 'success') {
-        const fullAudioUrl = data.audio_url.startsWith('http') ? data.audio_url : `${API_BASE_URL}${data.audio_url}`
+        const timestamp = new Date().getTime()
+        const fullAudioUrl = data.audio_url.startsWith('http') ? data.audio_url : `${API_BASE_URL}${data.audio_url}?t=${timestamp}`
         setGeneratedAudio(fullAudioUrl)
       } else {
         alert("Nexus Error: " + data.message)

@@ -4,6 +4,7 @@ import json
 import edge_tts
 import logging
 from fastapi import FastAPI, UploadFile, File, Form, HTTPException
+from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 import uvicorn
@@ -153,9 +154,15 @@ async def synthesize(
             logger.info(f"Edge-TTS Done: {output_path} (Size: {os.path.getsize(output_path)} bytes)")
             msg = f"Generated via {voice_meta['name']} (EdgeAI)"
         
+        # Instead of returning a URL, we'll return a header pointing to the file
+        # or just the path for the frontend to fetch as a stream.
+        # To be ultra-reliable, we'll send a custom header or just the success response.
+        logger.info(f"Successfully generated: {output_filename}")
+        
         return {
             "status": "success",
             "audio_url": f"/static/{output_filename}",
+            "filename": output_filename,
             "message": msg
         }
     except Exception as e:
