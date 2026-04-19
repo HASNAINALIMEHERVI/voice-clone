@@ -1,0 +1,212 @@
+[
+    {
+        "id": "ur_pk_uzma",
+        "name": "Uzma (Urdu Premium)",
+        "engine": "edge-tts",
+        "voice_code": "ur-PK-UzmaNeural",
+        "description": "Smooth and dignified Urdu female voice."
+    },
+    {
+        "id": "ur_pk_asad",
+        "name": "Asad (Urdu Pro)",
+        "engine": "edge-tts",
+        "voice_code": "ur-PK-AsadNeural",
+        "description": "Clear and authoritative Urdu male voice."
+    },
+    {
+        "id": "en_us_aria",
+        "name": "Aria (Crystal)",
+        "engine": "edge-tts",
+        "voice_code": "en-US-AriaNeural",
+        "description": "Natural and bright American female voice."
+    },
+    {
+        "id": "en_us_guy",
+        "name": "Guy (Narrator)",
+        "engine": "edge-tts",
+        "voice_code": "en-US-GuyNeural",
+        "description": "Deep and versatile American male voice."
+    },
+    {
+        "id": "en_gb_sonia",
+        "name": "Sonia (British)",
+        "engine": "edge-tts",
+        "voice_code": "en-GB-SoniaNeural",
+        "description": "Elegant and professional British female voice."
+    },
+    {
+        "id": "en_gb_ryan",
+        "name": "Ryan (UK Noble)",
+        "engine": "edge-tts",
+        "voice_code": "en-GB-RyanNeural",
+        "description": "Calm and sophisticated British male voice."
+    },
+    {
+        "id": "hi_in_swara",
+        "name": "Swara (Hindi)",
+        "engine": "edge-tts",
+        "voice_code": "hi-IN-SwaraNeural",
+        "description": "Friendly and conversational Hindi female voice."
+    },
+    {
+        "id": "hi_in_madhur",
+        "name": "Madhur (Hindi)",
+        "engine": "edge-tts",
+        "voice_code": "hi-IN-MadhurNeural",
+        "description": "Rich and clear Hindi male voice."
+    },
+    {
+        "id": "en_us_emma",
+        "name": "Emma (Soft US)",
+        "engine": "edge-tts",
+        "voice_code": "en-US-EmmaNeural",
+        "description": "Gentle and friendly American voice."
+    },
+    {
+        "id": "en_us_andrew",
+        "name": "Andrew (US News)",
+        "engine": "edge-tts",
+        "voice_code": "en-US-AndrewNeural",
+        "description": "Professional news caster male voice."
+    },
+    {
+        "id": "en_au_natasha",
+        "name": "Natasha (Aussie)",
+        "engine": "edge-tts",
+        "voice_code": "en-AU-NatashaNeural",
+        "description": "Clear Australian female voice."
+    },
+    {
+        "id": "en_au_william",
+        "name": "William (Aussie)",
+        "engine": "edge-tts",
+        "voice_code": "en-AU-WilliamNeural",
+        "description": "Energetic Australian male voice."
+    },
+    {
+        "id": "fr_fr_denise",
+        "name": "Denise (French)",
+        "engine": "edge-tts",
+        "voice_code": "fr-FR-DeniseNeural",
+        "description": "Charming and natural French female voice."
+    },
+    {
+        "id": "fr_fr_henri",
+        "name": "Henri (French)",
+        "engine": "edge-tts",
+        "voice_code": "fr-FR-HenriNeural",
+        "description": "Sophisticated French male voice."
+    },
+    {
+        "id": "de_de_katja",
+        "name": "Katja (German)",
+        "engine": "edge-tts",
+        "voice_code": "de-DE-KatjaNeural",
+        "description": "Professional German female voice."
+    },
+    {
+        "id": "de_de_conrad",
+        "name": "Conrad (German)",
+        "engine": "edge-tts",
+        "voice_code": "de-DE-ConradNeural",
+        "description": "Sturdy German male voice."
+    },
+    {
+        "id": "it_it_elsa",
+        "name": "Elsa (Italian)",
+        "engine": "edge-tts",
+        "voice_code": "it-IT-ElsaNeural",
+        "description": "Melodic Italian female voice."
+    },
+    {
+        "id": "it_it_diego",
+        "name": "Diego (Italian)",
+        "engine": "edge-tts",
+        "voice_code": "it-IT-DiegoNeural",
+        "description": "Smooth Italian male voice."
+    },
+    {
+        "id": "es_es_elvira",
+        "name": "Elvira (Spanish)",
+        "engine": "edge-tts",
+        "voice_code": "es-ES-ElviraNeural",
+        "description": "Vibrant Spanish female voice."
+    },
+    {
+        "id": "es_es_alvaro",
+        "name": "Alvaro (Spanish)",
+        "engine": "edge-tts",
+        "voice_code": "es-ES-AlvaroNeural",
+        "description": "Clear Spanish male voice."
+    },
+    {
+        "id": "ru_ru_svetlana",
+        "name": "Svetlana (Russian)",
+        "engine": "edge-tts",
+        "voice_code": "ru-RU-SvetlanaNeural",
+        "description": "Standard Russian female voice."
+    },
+    {
+        "id": "ru_ru_dmitry",
+        "name": "Dmitry (Russian)",
+        "engine": "edge-tts",
+        "voice_code": "ru-RU-DmitryNeural",
+        "description": "Clear Russian male voice."
+    },
+    {
+        "id": "ar_sa_zariyah",
+        "name": "Zariyah (Arabic)",
+        "engine": "edge-tts",
+        "voice_code": "ar-SA-ZariyahNeural",
+        "description": "Classical Arabic female voice."
+    },
+    {
+        "id": "ar_sa_hamed",
+        "name": "Hamed (Arabic)",
+        "engine": "edge-tts",
+        "voice_code": "ar-SA-HamedNeural",
+        "description": "Formal Arabic male voice."
+    },
+    {
+        "id": "ja_jp_nanami",
+        "name": "Nanami (Japanese)",
+        "engine": "edge-tts",
+        "voice_code": "ja-JP-NanamiNeural",
+        "description": "Polite Japanese female voice."
+    },
+    {
+        "id": "ja_jp_keita",
+        "name": "Keita (Japanese)",
+        "engine": "edge-tts",
+        "voice_code": "ja-JP-KeitaNeural",
+        "description": "Natural Japanese male voice."
+    },
+    {
+        "id": "pk_news",
+        "name": "News Desk (Urdu)",
+        "engine": "edge-tts",
+        "voice_code": "ur-PK-AsadNeural",
+        "description": "Formal Urdu news style."
+    },
+    {
+        "id": "eleven_rachel",
+        "name": "Rachel (Elite)",
+        "engine": "elevenlabs",
+        "voice_code": "21m00Tcm4TlvDq8ikWAM",
+        "description": "World-class neural voice from ElevenLabs."
+    },
+    {
+        "id": "eleven_josh",
+        "name": "Josh (Global)",
+        "engine": "elevenlabs",
+        "voice_code": "TxGEqnHW47M3nuP1pPey",
+        "description": "Rich, multi-lingual male from ElevenLabs."
+    },
+    {
+        "id": "eleven_bella",
+        "name": "Bella (Elite)",
+        "engine": "elevenlabs",
+        "voice_code": "EXAVITQu4vr4xnNLMQbx",
+        "description": "Soft and expressive ElevenLabs voice."
+    }
+]
