@@ -3,8 +3,6 @@ import './App.css'
 
 function App() {
   const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
-  const [activeTab, setActiveTab] = useState('nexus')
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true)
   const [text, setText] = useState('')
   const [isGenerating, setIsGenerating] = useState(false)
   const [generatedAudio, setGeneratedAudio] = useState(null)
@@ -68,7 +66,8 @@ function App() {
       })
       const data = await resp.json()
       if (data.status === 'success') {
-        setGeneratedAudio(data.audio_url)
+        const fullAudioUrl = data.audio_url.startsWith('http') ? data.audio_url : `${API_BASE_URL}${data.audio_url}`
+        setGeneratedAudio(fullAudioUrl)
       } else {
         alert("Nexus Error: " + data.message)
       }
@@ -89,34 +88,28 @@ function App() {
       <div className="bg-blob blob-purple"></div>
       <div className="bg-blob blob-cyan"></div>
 
-      <aside className={`sidebar glass ${isSidebarOpen ? 'open' : 'closed'}`}>
+      <aside className="sidebar glass">
         <div className="logo-section">
           <div className="logo-icon">A</div>
           <h1>Aura AI</h1>
         </div>
         
         <nav className="nav-menu">
-          <div className={`nav-item ${activeTab === 'nexus' ? 'active' : ''}`} onClick={() => setActiveTab('nexus')}>
+          <div className="nav-item active">
             <span className="icon">🌌</span>
             <span>Voice Nexus</span>
-          </div>
-          <div className={`nav-item ${activeTab === 'settings' ? 'active' : ''}`} onClick={() => setActiveTab('settings')}>
-            <span className="icon">⚙️</span>
-            <span>Neural Config</span>
           </div>
         </nav>
       </aside>
 
       <main className="main-stage">
         <header className="stage-header">
-          <button className="menu-toggle" onClick={() => setIsSidebarOpen(!isSidebarOpen)}>☰</button>
           <div className="header-meta">
-            <span className="breadcrumb">Aura / {activeTab}</span>
+            <span className="breadcrumb">Aura / Nexus</span>
           </div>
         </header>
 
         <div className="content-scroller">
-          {activeTab === 'nexus' && (
             <section className="nexus-view">
               <div className="welcome-banner">
                 <h1>Neural Voice Nexus</h1>
@@ -181,27 +174,21 @@ function App() {
                 </div>
               </div>
             </section>
-          )}
+          </div>
 
-          {activeTab === 'settings' && (
-            <div className="settings-view glass-card">
-              <h3>Neural Configuration</h3>
-              <div className="setting-item">
-                <label>ElevenLabs API Key (Optional for VIP Voices)</label>
-                <input 
-                  type="password" 
-                  placeholder="Paste key if you have one..." 
-                  className="name-input"
-                  value={apiKey}
-                  onChange={(e) => handleApiKeyChange(e.target.value)}
-                />
-                <p className="hint">Standard voices are free via EdgeAI.</p>
+          <footer className="nexus-footer glass">
+            <div className="footer-content">
+              <span className="footer-brand">Aura AI Nexus v2.0</span>
+              <div className="footer-links">
+                <span>Quantum Synthesis Active</span>
+                <span className="pulse-dot"></span>
+                <span>Neural Integrity: 99.9%</span>
               </div>
+              <span className="footer-copyright">© 2026 APNI SALTANAT</span>
             </div>
-          )}
-        </div>
-      </main>
-    </div>
+          </footer>
+        </main>
+      </div>
   )
 }
 
