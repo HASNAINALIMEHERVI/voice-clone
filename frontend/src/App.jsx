@@ -168,7 +168,12 @@ function App() {
                   {generatedAudio && (
                     <div className="result-player glass border-glow">
                       <p>Neural Output Captured:</p>
-                      <audio src={generatedAudio} controls autoPlay />
+                      <audio 
+                        src={generatedAudio} 
+                        controls 
+                        autoPlay 
+                        onError={() => alert("Sonic Stream Failure: The audio file couldn't be manifest. Check if the backend is still materializing.")}
+                      />
                     </div>
                   )}
                 </div>

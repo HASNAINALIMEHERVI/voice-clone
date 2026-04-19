@@ -34,7 +34,7 @@ VOICES_FILE = os.path.join(DATA_DIR, "voices.json")
 for d in [STATIC_DIR, DATA_DIR]:
     if not os.path.exists(d): os.makedirs(d)
 
-app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
+# app.mount moved below middleware for better CORS handling
 
 # CORS - allow all origins for the live web app to connect
 app.add_middleware(
@@ -44,6 +44,9 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Mount static files AFTER middleware to ensure CORS applies to them
+app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
 
 def load_voices() -> List[dict]:
     try:
@@ -141,13 +144,15 @@ async def synthesize(
         else:
             # Multi-lingual detection (simple)
             # Edge-TTS uses voice_code directly
+            logger.info(f"Edge-TTS Start: {voice_code}")
             communicate = edge_tts.Communicate(text, voice_code)
             await communicate.save(output_path)
+            logger.info(f"Edge-TTS Done: {output_path} (Size: {os.path.getsize(output_path)} bytes)")
             msg = f"Generated via {voice_meta['name']} (EdgeAI)"
         
         return {
             "status": "success",
-            "audio_url": f"http://localhost:8000/static/{output_filename}",
+            "audio_url": f"/static/{output_filename}",
             "message": msg
         }
     except Exception as e:

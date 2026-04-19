@@ -11,4 +11,4 @@ frontend/dist/
 .DS_Store
 
 # Persistence
-backend/data/voices.json
+# backend/data/voices.json
