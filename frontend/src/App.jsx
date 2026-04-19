@@ -172,6 +172,7 @@ function App() {
                         src={generatedAudio} 
                         controls 
                         autoPlay 
+                        crossOrigin="anonymous"
                         onError={() => alert("Sonic Stream Failure: The audio file couldn't be manifest. Check if the backend is still materializing.")}
                       />
                     </div>

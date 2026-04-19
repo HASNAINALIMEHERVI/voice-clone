@@ -36,16 +36,19 @@ for d in [STATIC_DIR, DATA_DIR]:
 
 # app.mount moved below middleware for better CORS handling
 
-# CORS - allow all origins for the live web app to connect
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# Mount static files AFTER middleware to ensure CORS applies to them
+# Force CORS on all responses (including StaticFiles)
+@app.middleware("http")
+async def add_cors_header(request, call_next):
+    response = await call_next(request)
+    response.headers["Access-Control-Allow-Origin"] = "*"
+    response.headers["Access-Control-Allow-Methods"] = "*"
+    response.headers["Access-Control-Allow-Headers"] = "*"
+    return response
+
+# Mount static files AFTER middleware
 app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
 
 def load_voices() -> List[dict]:
