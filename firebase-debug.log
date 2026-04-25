@@ -1,0 +1,39 @@
+[debug] [2026-04-20T12:49:44.913Z] ----------------------------------------------------------------------
+[debug] [2026-04-20T12:49:44.921Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Daddoo\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2026-04-20T12:49:44.922Z] CLI Version:   15.4.0
+[debug] [2026-04-20T12:49:44.922Z] Platform:      win32
+[debug] [2026-04-20T12:49:44.922Z] Node Version:  v22.20.0
+[debug] [2026-04-20T12:49:44.922Z] Time:          Mon Apr 20 2026 17:49:44 GMT+0500 (Pakistan Standard Time)
+[debug] [2026-04-20T12:49:44.923Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-04-20T12:49:47.972Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-04-20T12:49:47.972Z] > authorizing via signed-in user (100nationcommerce@gmail.com)
+[debug] [2026-04-20T12:49:47.973Z] [iam] checking project ilm-e-saltanat for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2026-04-20T12:49:47.974Z] Checked if tokens are valid: false, expires at: 1776678145998
+[debug] [2026-04-20T12:49:47.974Z] Checked if tokens are valid: false, expires at: 1776678145998
+[debug] [2026-04-20T12:49:47.974Z] > refreshing access token with scopes: []
+[debug] [2026-04-20T12:49:47.977Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2026-04-20T12:49:47.977Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-04-20T12:49:48.465Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2026-04-20T12:49:48.465Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-04-20T12:49:48.474Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/ilm-e-saltanat:testIamPermissions [none]
+[debug] [2026-04-20T12:49:48.474Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/ilm-e-saltanat:testIamPermissions x-goog-quota-user=projects/ilm-e-saltanat
+[debug] [2026-04-20T12:49:48.474Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/ilm-e-saltanat:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2026-04-20T12:49:50.108Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/ilm-e-saltanat:testIamPermissions 200
+[debug] [2026-04-20T12:49:50.108Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/ilm-e-saltanat:testIamPermissions {}
+[debug] [2026-04-20T12:49:50.109Z] [iam] error while checking permissions, command may fail: Authorization failed. This account is missing the following required permissions on project ilm-e-saltanat:
+
+  firebase.projects.get
+  firebasehosting.sites.update
+[debug] [2026-04-20T12:49:50.109Z] Checked if tokens are valid: true, expires at: 1776692987465
+[debug] [2026-04-20T12:49:50.109Z] Checked if tokens are valid: true, expires at: 1776692987465
+[debug] [2026-04-20T12:49:50.110Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/ilm-e-saltanat [none]
+[debug] [2026-04-20T12:49:51.129Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/ilm-e-saltanat 403
+[debug] [2026-04-20T12:49:51.129Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/ilm-e-saltanat {"error":{"code":403,"message":"The caller does not have permission","status":"PERMISSION_DENIED"}}
+[debug] [2026-04-20T12:49:51.130Z] Request to https://firebase.googleapis.com/v1beta1/projects/ilm-e-saltanat had HTTP Error: 403, The caller does not have permission
+[debug] [2026-04-20T12:49:51.134Z] FirebaseError: Request to https://firebase.googleapis.com/v1beta1/projects/ilm-e-saltanat had HTTP Error: 403, The caller does not have permission
+    at responseToError (C:\Users\Daddoo\AppData\Roaming\npm\node_modules\firebase-tools\lib\responseToError.js:53:12)
+    at RetryOperation._fn (C:\Users\Daddoo\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:325:77)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+[error] 
+[error] Error: Failed to get Firebase project ilm-e-saltanat. Please make sure the project exists and your account has permission to access it.

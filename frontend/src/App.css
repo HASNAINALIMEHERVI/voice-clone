@@ -176,12 +176,13 @@ body {
 }
 
 .welcome-banner h1 {
-  font-size: 2.5rem;
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
   margin-bottom: 0.5rem;
   background: linear-gradient(to right, #fff, var(--primary));
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+  line-height: 1.2;
 }
 
 .welcome-banner p {
@@ -285,6 +286,7 @@ textarea {
   line-height: 1.7;
   resize: none;
   transition: all 0.3s;
+  font-size: 16px; /* Prevents auto-zoom on mobile */
 }
 
 textarea:focus {
@@ -361,56 +363,65 @@ textarea:focus {
 }
 
 @media (max-width: 768px) {
-  body { overflow-y: auto; height: auto; }
-  .aura-app { flex-direction: column; height: auto; overflow: visible; }
+  body { overflow-y: auto; height: auto; min-height: 100vh; }
+  .aura-app { flex-direction: column; height: auto; min-height: 100vh; overflow: visible; }
   
-  /* Hide Sidebar on Mobile, move to Top Bar */
   .sidebar {
     width: 100%;
-    height: 80px;
+    height: 70px;
     flex-direction: row;
-    justify-content: center;
-    padding: 0 1.5rem;
+    justify-content: space-between;
+    padding: 0 1.2rem;
     position: sticky;
     top: 0;
     border-right: none;
     border-bottom: 1px solid var(--glass-border);
+    gap: 1rem;
   }
   
-  .logo-section h1 { font-size: 1rem; }
-  .nav-menu { display: none; } /* Navigation via list selection */
+  .logo-section h1 { font-size: 0.9rem; }
+  .logo-icon { width: 32px; height: 32px; font-size: 1.1rem; }
+  .nav-menu { display: none; }
 
-  .main-stage { height: auto; }
-  .stage-header { padding: 0 1.5rem; height: 50px; border: none; }
-  .content-scroller { padding: 1.5rem; overflow: visible; }
+  .main-stage { height: auto; flex: none; }
+  .stage-header { display: none; }
+  .content-scroller { padding: 1.2rem; overflow: visible; }
   
+  .welcome-banner { margin-bottom: 1.5rem; }
   .welcome-banner h1 { font-size: 1.8rem; }
-  .welcome-banner p { font-size: 0.9rem; }
+  .welcome-banner p { font-size: 0.85rem; }
   
-  .glass-card { padding: 1.5rem; border-radius: 24px; }
+  .nexus-grid { gap: 1rem; }
+  .glass-card { padding: 1rem; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
   
   .agent-list {
     display: flex;
-    flex-direction: row;
-    overflow-x: auto;
-    overflow-y: hidden;
-    gap: 0.8rem;
-    padding-bottom: 1rem;
-    max-height: none;
-    scrollbar-width: none;
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+    gap: 0.6rem;
+    padding: 0.2rem 0;
+    max-height: 250px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: var(--glass-border) transparent;
   }
   
   .agent-selector-card {
-    min-width: 160px;
-    flex-direction: column;
-    text-align: center;
-    padding: 1.5rem 1rem;
+    min-width: 100%;
+    flex-direction: row;
+    text-align: left;
+    padding: 1rem;
+    flex-shrink: 0;
   }
   
-  .agent-avatar { width: 50px; height: 50px; margin-bottom: 0.5rem; }
+  .agent-avatar { width: 40px; height: 40px; margin-bottom: 0.4rem; font-size: 0.9rem; }
+  .agent-meta strong { font-size: 0.8rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100px; }
   
-  textarea { min-height: 200px; font-size: 1rem; padding: 1.2rem; }
-  .btn-primary { font-size: 1rem; padding: 1.2rem; }
+  textarea { min-height: 320px; font-size: 16px; padding: 1.2rem; border-radius: 18px; width: 100%; }
+  .btn-primary { width: 100%; font-size: 1.1rem; padding: 1.2rem; border-radius: 16px; margin-top: 1rem; display: block; }
+  
+  .result-player { padding: 1.2rem; border-radius: 18px; }
   
   .nexus-footer { height: auto; padding: 1.5rem; flex-direction: column; gap: 1rem; text-align: center; }
   .footer-content { flex-direction: column; gap: 0.8rem; }
