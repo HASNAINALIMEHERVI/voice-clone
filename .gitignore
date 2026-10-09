@@ -12,3 +12,9 @@ frontend/dist/
 
 # Persistence
 # backend/data/voices.json
+
+.env*
+**/.env*
+!**/.env.example
+.firebase/
+backend/data/voices.tmp
