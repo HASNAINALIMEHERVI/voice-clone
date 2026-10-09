@@ -8,10 +8,11 @@ function App() {
   const [generatedAudio, setGeneratedAudio] = useState(null)
   const [voices, setVoices] = useState([])
   const [selectedVoiceId, setSelectedVoiceId] = useState('')
-  const [apiKey, setApiKey] = useState(localStorage.getItem('aura_api_key') || '')
+  const [error, setError] = useState('')
   const [isSyncing, setIsSyncing] = useState(false)
 
   useEffect(() => {
+    localStorage.removeItem('aura_api_key')
     fetchVoices()
   }, [])
 
@@ -19,17 +20,19 @@ function App() {
     try {
       const resp = await fetch(`${API_BASE_URL}/voices`)
       const data = await resp.json()
+      if (!resp.ok) throw new Error(data.detail || data.message || "Request failed.")
+      if (!Array.isArray(data)) throw new Error("Invalid voice catalog.")
       setVoices(data)
-      if (data.length > 0) setSelectedVoiceId(data[0].id)
+      if (data.length > 0) setSelectedVoiceId((data.find(v => v.available !== false) || data[0]).id)
     } catch (err) {
-      console.error("Failed to load ecosystem")
+      setError(err.message || "Cannot reach the speech server.")
     }
   }
 
   const syncVoices = async () => {
+    setError('')
     setIsSyncing(true)
     const formData = new FormData()
-    if (apiKey) formData.append('api_key', apiKey)
 
     try {
       const resp = await fetch(`${API_BASE_URL}/sync-elevenlabs`, {
@@ -37,6 +40,7 @@ function App() {
         body: formData
       })
       const data = await resp.json()
+      if (!resp.ok) throw new Error(data.detail || data.message || "Request failed.")
       if (data.status === 'success') {
         alert(data.message)
         fetchVoices()
@@ -44,7 +48,7 @@ function App() {
         alert("Sync Error: " + data.message)
       }
     } catch (err) {
-      console.error(err)
+      setError(err.message || "Request failed.")
     } finally {
       setIsSyncing(false)
     }
@@ -52,12 +56,12 @@ function App() {
 
   const handleSynthesize = async () => {
     if (!text || !selectedVoiceId) return
+    setError(''); setGeneratedAudio(null)
     setIsGenerating(true)
     
     const formData = new FormData()
     formData.append('voice_id', selectedVoiceId)
     formData.append('text', text)
-    if (apiKey) formData.append('api_key', apiKey)
 
     try {
       const resp = await fetch(`${API_BASE_URL}/synthesize`, {
@@ -65,6 +69,7 @@ function App() {
         body: formData
       })
       const data = await resp.json()
+      if (!resp.ok) throw new Error(data.detail || data.message || "Request failed.")
       if (data.status === 'success') {
         const timestamp = new Date().getTime()
         const fullAudioUrl = data.audio_url.startsWith('http') ? data.audio_url : `${API_BASE_URL}${data.audio_url}?t=${timestamp}`
@@ -73,15 +78,10 @@ function App() {
         alert("Nexus Error: " + data.message)
       }
     } catch (err) {
-      console.error(err)
+      setError(err.message || "Request failed.")
     } finally {
       setIsGenerating(false)
     }
-  }
-
-  const handleApiKeyChange = (val) => {
-    setApiKey(val)
-    localStorage.setItem('aura_api_key', val)
   }
 
   return (
@@ -112,9 +112,10 @@ function App() {
 
         <div className="content-scroller">
             <section className="nexus-view">
+              {error && <p role="alert">{error}</p>}
               <div className="welcome-banner">
                 <h1>Neural Voice Nexus</h1>
-                <p>Select a digital agent and manifest your text into sound.</p>
+                <p>Choose a voice and turn text into speech.</p>
               </div>
 
               <div className="nexus-grid">
@@ -127,7 +128,7 @@ function App() {
                   </div>
                   <div className="agent-list">
                     {voices.map(v => (
-                      <div 
+                      <button type="button" disabled={v.available === false}
                         key={v.id} 
                         className={`agent-selector-card glass ${selectedVoiceId === v.id ? 'active' : ''}`}
                         onClick={() => setSelectedVoiceId(v.id)}
@@ -137,7 +138,7 @@ function App() {
                           <strong>{v.name}</strong>
                           <span className="engine-tag">{v.engine}</span>
                         </div>
-                      </div>
+                      </button>
                     ))}
                   </div>
                 </div>
@@ -151,7 +152,7 @@ function App() {
                   </header>
                   
                   <textarea 
-                    placeholder="Type your message here..."
+                    aria-label="Text to speak" maxLength={5000} placeholder="Type your message here..."
                     value={text}
                     onChange={(e) => setText(e.target.value)}
                   ></textarea>
@@ -160,7 +161,7 @@ function App() {
                     <button 
                       className="btn-primary full-width" 
                       onClick={handleSynthesize}
-                      disabled={isGenerating || !text}
+                      disabled={isGenerating || !text.trim() || !selectedVoiceId}
                     >
                       {isGenerating ? "Manifesting..." : "Synthesize ⚡"}
                     </button>
@@ -187,9 +188,9 @@ function App() {
             <div className="footer-content">
               <span className="footer-brand">Aura AI Nexus v2.0</span>
               <div className="footer-links">
-                <span>Quantum Synthesis Active</span>
+                <span>Online voice providers</span>
                 <span className="pulse-dot"></span>
-                <span>Neural Integrity: 99.9%</span>
+                <span>Text-to-speech prototype</span>
               </div>
               <span className="footer-copyright">© 2026 APNI SALTANAT</span>
             </div>
